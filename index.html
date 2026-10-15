@@ -1739,15 +1739,423 @@ button,
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',hide,{once:true}); else hide();
 })();
 </script>
+
+<style id="johnmel-premium-testimonials-and-welcome">
+/* ==========================================================
+   PREMIUM MULTILINGUAL WELCOME INTRO
+   Uses the existing dark navy + warm orange/gold brand palette.
+   ========================================================== */
+#custom-preloader {
+    background:
+        radial-gradient(ellipse at 50% 42%, rgba(245,135,68,.10) 0%, rgba(11,15,25,0) 42%),
+        #0B0F19 !important;
+    overflow: hidden;
+}
+#custom-preloader .preloader-content {
+    position: relative;
+    width: min(92vw, 620px);
+    min-height: 260px;
+    height: auto;
+    padding: 34px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 22px;
+    isolation: isolate;
+}
+#custom-preloader .preloader-content::before {
+    width: 250px;
+    height: 250px;
+    margin-left: -125px;
+    margin-top: -125px;
+    border-color: rgba(245,135,68,.12);
+    border-top-color: #F58744;
+    border-right-color: rgba(255,210,51,.75);
+    box-shadow: 0 0 35px rgba(245,135,68,.08);
+}
+#custom-preloader .preloader-content::after {
+    width: 218px;
+    height: 218px;
+    margin-left: -109px;
+    margin-top: -109px;
+    border-color: rgba(255,210,51,.08);
+    border-left-color: rgba(255,210,51,.55);
+}
+#custom-preloader .preloader-orbit-dot {
+    width: 7px;
+    height: 7px;
+    margin-left: -3.5px;
+    margin-top: -3.5px;
+    background: #FFD233;
+    box-shadow: 0 0 14px rgba(255,210,51,.75), 0 0 28px rgba(245,135,68,.35);
+}
+#custom-preloader .preloader-logo {
+    display: none !important;
+}
+#custom-preloader .welcome-greeting {
+    position: relative;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: clamp(78px, 12vw, 120px);
+    width: 100%;
+    color: #FFFFFF;
+    text-align: center;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(3.2rem, 9vw, 6.8rem);
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: -.075em;
+    text-wrap: nowrap;
+    text-shadow: 0 8px 45px rgba(0,0,0,.2);
+}
+#custom-preloader .welcome-greeting-word {
+    display: inline-block;
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+    transition: opacity .18s ease, transform .18s ease, filter .18s ease;
+}
+#custom-preloader .welcome-greeting-word.is-changing {
+    opacity: 0;
+    transform: translateY(9px) scale(.985);
+    filter: blur(5px);
+}
+#custom-preloader .welcome-caption {
+    position: relative;
+    z-index: 5;
+    color: #F58744;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: .42em;
+    margin-left: .42em;
+}
+#custom-preloader .welcome-progress {
+    position: relative;
+    z-index: 5;
+    width: 88px;
+    height: 2px;
+    border-radius: 99px;
+    background: rgba(255,255,255,.12);
+    overflow: hidden;
+}
+#custom-preloader .welcome-progress span {
+    display: block;
+    width: 35%;
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, #F58744, #FFD233);
+    animation: johnmelWelcomeProgress 4.8s ease-in-out forwards;
+}
+@keyframes johnmelWelcomeProgress {
+    from { transform: translateX(-110%); }
+    to { transform: translateX(300%); }
+}
+#custom-preloader.loader-hidden {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    transition: opacity .5s ease, visibility 0s linear .5s !important;
+}
+@media (max-width: 480px) {
+    #custom-preloader .preloader-content { min-height: 220px; }
+    #custom-preloader .welcome-greeting {
+        font-size: clamp(2.7rem, 12vw, 4.3rem);
+        letter-spacing: -.065em;
+    }
+    #custom-preloader .preloader-content::before {
+        width: 210px; height: 210px;
+        margin-left: -105px; margin-top: -105px;
+    }
+    #custom-preloader .preloader-content::after {
+        width: 184px; height: 184px;
+        margin-left: -92px; margin-top: -92px;
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    #custom-preloader .preloader-content::before,
+    #custom-preloader .preloader-content::after,
+    #custom-preloader .preloader-orbit-dot,
+    #custom-preloader .welcome-progress span {
+        animation: none !important;
+    }
+    #custom-preloader .welcome-greeting-word {
+        transition: none !important;
+    }
+}
+
+/* ==========================================================
+   PREMIUM TESTIMONIAL ALIGNMENT
+   All testimonial wording, names, images, and video remain as-is.
+   ========================================================== */
+#success_stories.testimonial_section {
+    position: relative;
+    overflow: hidden;
+    padding: 20px 0;
+    background:
+        radial-gradient(ellipse at 8% 12%, rgba(245,135,68,.055), transparent 36%),
+        radial-gradient(ellipse at 92% 85%, rgba(255,210,51,.035), transparent 32%);
+}
+#success_stories .testimonial_layout {
+    width: min(1240px, calc(100% - 48px));
+    margin: 0 auto;
+    padding: 88px 0;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 34px;
+    align-items: start;
+}
+#success_stories .left_column {
+    display: contents;
+}
+#success_stories .intro_block {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 28px;
+    padding: 0 0 28px;
+    border-bottom: 1px solid rgba(255,255,255,.11);
+}
+#success_stories .testimonial-title {
+    max-width: 760px;
+    margin: 0 !important;
+    color: #FFFFFF;
+    font-size: clamp(2.2rem, 4.5vw, 4rem);
+    line-height: 1.08;
+    letter-spacing: -.055em;
+    font-weight: 650;
+    text-wrap: balance;
+}
+#success_stories .testimonial-button {
+    position: relative;
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    padding: 13px 23px;
+    border: 1px solid #F58744;
+    border-radius: 999px;
+    background: #F58744;
+    color: #0B0F19;
+    font-size: .95rem;
+    font-weight: 700;
+    line-height: 1;
+    box-shadow: 0 8px 24px rgba(245,135,68,.12);
+    transition: transform .25s ease, background .25s ease, color .25s ease, box-shadow .25s ease;
+    white-space: nowrap;
+}
+#success_stories .testimonial-button:hover {
+    transform: translateY(-3px);
+    background: #FFD233;
+    border-color: #FFD233;
+    color: #0B0F19;
+    box-shadow: 0 12px 30px rgba(255,210,51,.16);
+}
+#success_stories .text_cards_stack {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: stretch;
+    gap: 18px;
+}
+#success_stories .text-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    min-width: 0;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 28px 26px 30px;
+    border: 1px solid #2D3748;
+    border-radius: 22px;
+    background: linear-gradient(145deg, rgba(29,35,50,.98), rgba(20,25,38,.98));
+    color: #E5E7EB;
+    box-shadow: 0 14px 35px rgba(0,0,0,.12);
+    transition: transform .28s ease, border-color .28s ease, box-shadow .28s ease;
+}
+#success_stories .text-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(245,135,68,.62);
+    box-shadow: 0 20px 42px rgba(0,0,0,.2);
+}
+#success_stories .text-card::before {
+    content: "“";
+    display: block;
+    height: 38px;
+    color: #F58744;
+    font-family: Georgia, serif;
+    font-size: 4.4rem;
+    font-weight: 700;
+    line-height: 1;
+    opacity: .95;
+}
+#success_stories .text-card .testi-header {
+    order: 2;
+    display: flex;
+    align-items: center;
+    align-content: initial;
+    margin-top: auto;
+}
+#success_stories .text-card .testi-header img,
+#success_stories .text-card .testi-avatar {
+    display: block;
+    width: 54px;
+    height: 54px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid rgba(245,135,68,.65);
+    box-shadow: 0 0 0 4px rgba(245,135,68,.08);
+}
+#success_stories .text-card > div:not(.testi-header) {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+}
+#success_stories .text-card .testi-name {
+    order: -1;
+    margin: 0;
+    color: #FFD233;
+    font-size: 1.05rem;
+    font-weight: 700;
+    line-height: 1.35;
+    letter-spacing: -.015em;
+}
+#success_stories .text-card .testi-text {
+    margin: 0;
+    color: #D1D5DB;
+    font-size: .96rem;
+    font-weight: 400;
+    line-height: 1.75;
+    letter-spacing: 0;
+    overflow-wrap: anywhere;
+}
+#success_stories .right_column {
+    grid-column: 1 / -1;
+    position: relative;
+    top: auto;
+    width: min(900px, 100%);
+    margin: 18px auto 0;
+}
+#success_stories .video-card {
+    position: relative;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border: 1px solid #2D3748;
+    border-radius: 24px;
+    background: #080F19;
+    box-shadow: 0 22px 60px rgba(0,0,0,.25);
+}
+#success_stories .video-card iframe {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+@media (max-width: 1000px) {
+    #success_stories .text_cards_stack {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    #success_stories .text-card:last-child {
+        grid-column: 1 / -1;
+    }
+}
+@media (max-width: 680px) {
+    #success_stories.testimonial_section { padding: 0; }
+    #success_stories .testimonial_layout {
+        width: min(100% - 32px, 520px);
+        padding: 58px 0;
+        gap: 24px;
+    }
+    #success_stories .intro_block {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 20px;
+        padding-bottom: 22px;
+    }
+    #success_stories .testimonial-title {
+        font-size: clamp(2.1rem, 10vw, 3.1rem);
+        line-height: 1.1;
+    }
+    #success_stories .text_cards_stack {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 14px;
+    }
+    #success_stories .text-card,
+    #success_stories .text-card:last-child {
+        grid-column: auto;
+        padding: 24px 22px;
+        border-radius: 18px;
+    }
+    #success_stories .text-card .testi-text {
+        font-size: .95rem;
+    }
+    #success_stories .right_column {
+        margin-top: 4px;
+    }
+    #success_stories .video-card {
+        border-radius: 18px;
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    #success_stories .text-card,
+    #success_stories .testimonial-button {
+        transition: none !important;
+    }
+    #success_stories .text-card:hover,
+    #success_stories .testimonial-button:hover {
+        transform: none !important;
+    }
+}
+</style>
+
 </head>
 <body 
 class="home wp-singular page-template-default page page-id-23 wp-embed-responsive wp-theme-twentytwentyfive wp-child-theme-twentytwentyfive-child">
-    <div id="custom-preloader">
+    <div id="custom-preloader" aria-label="Welcome">
         <div class="preloader-content">
             <span class="preloader-orbit-dot" aria-hidden="true"></span>
-            <img decoding="async" src="https://i.imgur.com/W4tDHwC_d.png?maxwidth=520&shape=thumb&fidelity=high" alt="Johnmel Indanan Logo" class="preloader-logo">
+            <div class="welcome-greeting" aria-live="polite" aria-atomic="true">
+                <span class="welcome-greeting-word">Hello</span>
+            </div>
+            <div class="welcome-caption">WELCOME</div>
+            <div class="welcome-progress" aria-hidden="true"><span></span></div>
         </div>
     </div>
+    <script id="johnmel-welcome-sequence">
+    (function () {
+        var loader = document.getElementById('custom-preloader');
+        var word = loader && loader.querySelector('.welcome-greeting-word');
+        if (!word) return;
+
+        var greetings = [
+            'Hello', 'Hola', 'Bonjour', 'Ciao', 'Hallo',
+            'こんにちは', '안녕하세요', '你好', 'مرحبا', 'Kumusta'
+        ];
+        var index = 0;
+
+        function showNextGreeting() {
+            word.classList.add('is-changing');
+            window.setTimeout(function () {
+                index = (index + 1) % greetings.length;
+                word.textContent = greetings[index];
+                word.classList.remove('is-changing');
+            }, 180);
+        }
+
+        window.setInterval(showNextGreeting, 440);
+    })();
+    </script>
     
 <div class="main-container" id="top">
     <header id="main-header">
@@ -2248,14 +2656,14 @@ I would not hesitate to hire him again when the need arises. I can be contacted 
         const loader = document.getElementById("custom-preloader");
         if (!loader) return;
 
-        /* Keep the intro visible for exactly 3 seconds, then reveal the portfolio. */
+        /* Keep the multilingual welcome intro visible long enough to feel intentional. */
         setTimeout(function () {
             loader.classList.add("loader-hidden");
 
             setTimeout(function () {
                 if (loader.parentNode) loader.parentNode.removeChild(loader);
             }, 500);
-        }, 3000);
+        }, 5000);
     }
 
     if (document.readyState === "loading") {
