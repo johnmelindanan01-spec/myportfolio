@@ -1733,30 +1733,25 @@ button,
   var start=performance.now();
   function hide(){
     var elapsed=performance.now()-start;
-    var remaining=Math.max(0,3000-elapsed);
+    var remaining=Math.max(0,5000-elapsed);
     setTimeout(function(){loader.classList.add('loader-hidden');},remaining);
   }
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',hide,{once:true}); else hide();
 })();
 </script>
 
-<style id="johnmel-premium-testimonials-and-welcome">
-/* ==========================================================
-   PREMIUM MULTILINGUAL WELCOME INTRO
-   Uses the existing dark navy + warm orange/gold brand palette.
-   ========================================================== */
+<style id="johnmel-welcome-glass-and-testimonial-readmore">
+/* INTRO: keep the multilingual greeting, remove every circular/orbit graphic. */
 #custom-preloader {
-    background:
-        radial-gradient(ellipse at 50% 42%, rgba(245,135,68,.10) 0%, rgba(11,15,25,0) 42%),
-        #0B0F19 !important;
+    background: radial-gradient(ellipse at 50% 42%, rgba(245,135,68,.10) 0%, rgba(11,15,25,0) 44%), #0B0F19 !important;
     overflow: hidden;
 }
 #custom-preloader .preloader-content {
     position: relative;
     width: min(92vw, 620px);
-    min-height: 260px;
+    min-height: 220px;
     height: auto;
-    padding: 34px 20px;
+    padding: 30px 18px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1764,55 +1759,41 @@ button,
     gap: 22px;
     isolation: isolate;
 }
-#custom-preloader .preloader-content::before {
-    width: 250px;
-    height: 250px;
-    margin-left: -125px;
-    margin-top: -125px;
-    border-color: rgba(245,135,68,.12);
-    border-top-color: #F58744;
-    border-right-color: rgba(255,210,51,.75);
-    box-shadow: 0 0 35px rgba(245,135,68,.08);
-}
-#custom-preloader .preloader-content::after {
-    width: 218px;
-    height: 218px;
-    margin-left: -109px;
-    margin-top: -109px;
-    border-color: rgba(255,210,51,.08);
-    border-left-color: rgba(255,210,51,.55);
-}
+#custom-preloader .preloader-content::before,
+#custom-preloader .preloader-content::after,
 #custom-preloader .preloader-orbit-dot {
-    width: 7px;
-    height: 7px;
-    margin-left: -3.5px;
-    margin-top: -3.5px;
-    background: #FFD233;
-    box-shadow: 0 0 14px rgba(255,210,51,.75), 0 0 28px rgba(245,135,68,.35);
-}
-#custom-preloader .preloader-logo {
     display: none !important;
+    content: none !important;
+    animation: none !important;
 }
+#custom-preloader .preloader-logo { display: none !important; }
 #custom-preloader .welcome-greeting {
     position: relative;
     z-index: 5;
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: clamp(78px, 12vw, 120px);
+    min-height: clamp(90px, 14vw, 145px);
     width: 100%;
-    color: #FFFFFF;
+    color: #fff;
     text-align: center;
     font-family: 'Space Grotesk', sans-serif;
-    font-size: clamp(3.2rem, 9vw, 6.8rem);
+    font-size: clamp(3rem, 9vw, 6.6rem);
     font-weight: 600;
-    line-height: 1;
-    letter-spacing: -.075em;
-    text-wrap: nowrap;
-    text-shadow: 0 8px 45px rgba(0,0,0,.2);
+    line-height: 1.12;
+    letter-spacing: -.065em;
 }
 #custom-preloader .welcome-greeting-word {
     display: inline-block;
+    padding: .16em .34em .22em;
+    border: 1px solid rgba(255,255,255,.25);
+    border-radius: 26px;
+    background: linear-gradient(135deg, rgba(255,255,255,.20), rgba(255,255,255,.035) 55%, rgba(245,135,68,.10));
+    -webkit-backdrop-filter: blur(22px) saturate(155%);
+    backdrop-filter: blur(22px) saturate(155%);
+    color: rgba(255,255,255,.94);
+    text-shadow: 0 1px 18px rgba(255,255,255,.18), 0 10px 38px rgba(0,0,0,.24);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.20), 0 18px 55px rgba(0,0,0,.18), 0 0 32px rgba(245,135,68,.07);
     opacity: 1;
     transform: translateY(0) scale(1);
     filter: blur(0);
@@ -1821,7 +1802,7 @@ button,
 #custom-preloader .welcome-greeting-word.is-changing {
     opacity: 0;
     transform: translateY(9px) scale(.985);
-    filter: blur(5px);
+    filter: blur(7px);
 }
 #custom-preloader .welcome-caption {
     position: relative;
@@ -1850,273 +1831,54 @@ button,
     background: linear-gradient(90deg, #F58744, #FFD233);
     animation: johnmelWelcomeProgress 4.8s ease-in-out forwards;
 }
-@keyframes johnmelWelcomeProgress {
-    from { transform: translateX(-110%); }
-    to { transform: translateX(300%); }
-}
+@keyframes johnmelWelcomeProgress { from { transform: translateX(-110%); } to { transform: translateX(300%); } }
 #custom-preloader.loader-hidden {
     opacity: 0 !important;
     visibility: hidden !important;
     transition: opacity .5s ease, visibility 0s linear .5s !important;
 }
 @media (max-width: 480px) {
-    #custom-preloader .preloader-content { min-height: 220px; }
-    #custom-preloader .welcome-greeting {
-        font-size: clamp(2.7rem, 12vw, 4.3rem);
-        letter-spacing: -.065em;
-    }
-    #custom-preloader .preloader-content::before {
-        width: 210px; height: 210px;
-        margin-left: -105px; margin-top: -105px;
-    }
-    #custom-preloader .preloader-content::after {
-        width: 184px; height: 184px;
-        margin-left: -92px; margin-top: -92px;
-    }
+    #custom-preloader .preloader-content { min-height: 200px; }
+    #custom-preloader .welcome-greeting { font-size: clamp(2.5rem, 11vw, 4.2rem); letter-spacing: -.06em; }
+    #custom-preloader .welcome-greeting-word { border-radius: 20px; }
 }
 @media (prefers-reduced-motion: reduce) {
-    #custom-preloader .preloader-content::before,
-    #custom-preloader .preloader-content::after,
-    #custom-preloader .preloader-orbit-dot,
-    #custom-preloader .welcome-progress span {
-        animation: none !important;
-    }
-    #custom-preloader .welcome-greeting-word {
-        transition: none !important;
-    }
+    #custom-preloader .welcome-progress span { animation: none !important; }
+    #custom-preloader .welcome-greeting-word { transition: none !important; }
 }
 
-/* ==========================================================
-   PREMIUM TESTIMONIAL ALIGNMENT
-   All testimonial wording, names, images, and video remain as-is.
-   ========================================================== */
-#success_stories.testimonial_section {
-    position: relative;
+/* TESTIMONIALS: preserve the original two-column layout and card design. */
+#success_stories .testi-role {
+    display: block;
+    margin: 3px 0 9px;
+    color: #596273;
+    font-size: 12px;
+    line-height: 1.4;
+    font-weight: 600;
+    letter-spacing: .015em;
+}
+#success_stories .testi-text.is-collapsed {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+    line-clamp: 4;
     overflow: hidden;
-    padding: 20px 0;
-    background:
-        radial-gradient(ellipse at 8% 12%, rgba(245,135,68,.055), transparent 36%),
-        radial-gradient(ellipse at 92% 85%, rgba(255,210,51,.035), transparent 32%);
 }
-#success_stories .testimonial_layout {
-    width: min(1240px, calc(100% - 48px));
-    margin: 0 auto;
-    padding: 88px 0;
-    display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    gap: 34px;
-    align-items: start;
-}
-#success_stories .left_column {
-    display: contents;
-}
-#success_stories .intro_block {
-    grid-column: 1 / -1;
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    gap: 28px;
-    padding: 0 0 28px;
-    border-bottom: 1px solid rgba(255,255,255,.11);
-}
-#success_stories .testimonial-title {
-    max-width: 760px;
-    margin: 0 !important;
-    color: #FFFFFF;
-    font-size: clamp(2.2rem, 4.5vw, 4rem);
-    line-height: 1.08;
-    letter-spacing: -.055em;
-    font-weight: 650;
-    text-wrap: balance;
-}
-#success_stories .testimonial-button {
-    position: relative;
-    flex: 0 0 auto;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 48px;
-    padding: 13px 23px;
-    border: 1px solid #F58744;
-    border-radius: 999px;
-    background: #F58744;
-    color: #0B0F19;
-    font-size: .95rem;
-    font-weight: 700;
-    line-height: 1;
-    box-shadow: 0 8px 24px rgba(245,135,68,.12);
-    transition: transform .25s ease, background .25s ease, color .25s ease, box-shadow .25s ease;
-    white-space: nowrap;
-}
-#success_stories .testimonial-button:hover {
-    transform: translateY(-3px);
-    background: #FFD233;
-    border-color: #FFD233;
-    color: #0B0F19;
-    box-shadow: 0 12px 30px rgba(255,210,51,.16);
-}
-#success_stories .text_cards_stack {
-    grid-column: 1 / -1;
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    align-items: stretch;
-    gap: 18px;
-}
-#success_stories .text-card {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 20px;
-    min-width: 0;
-    height: 100%;
-    box-sizing: border-box;
-    padding: 28px 26px 30px;
-    border: 1px solid #2D3748;
-    border-radius: 22px;
-    background: linear-gradient(145deg, rgba(29,35,50,.98), rgba(20,25,38,.98));
-    color: #E5E7EB;
-    box-shadow: 0 14px 35px rgba(0,0,0,.12);
-    transition: transform .28s ease, border-color .28s ease, box-shadow .28s ease;
-}
-#success_stories .text-card:hover {
-    transform: translateY(-5px);
-    border-color: rgba(245,135,68,.62);
-    box-shadow: 0 20px 42px rgba(0,0,0,.2);
-}
-#success_stories .text-card::before {
-    content: "“";
-    display: block;
-    height: 38px;
-    color: #F58744;
-    font-family: Georgia, serif;
-    font-size: 4.4rem;
-    font-weight: 700;
-    line-height: 1;
-    opacity: .95;
-}
-#success_stories .text-card .testi-header {
-    order: 2;
-    display: flex;
-    align-items: center;
-    align-content: initial;
-    margin-top: auto;
-}
-#success_stories .text-card .testi-header img,
-#success_stories .text-card .testi-avatar {
-    display: block;
-    width: 54px;
-    height: 54px;
-    object-fit: cover;
-    border-radius: 50%;
-    border: 2px solid rgba(245,135,68,.65);
-    box-shadow: 0 0 0 4px rgba(245,135,68,.08);
-}
-#success_stories .text-card > div:not(.testi-header) {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    width: 100%;
-}
-#success_stories .text-card .testi-name {
-    order: -1;
-    margin: 0;
-    color: #FFD233;
-    font-size: 1.05rem;
-    font-weight: 700;
-    line-height: 1.35;
-    letter-spacing: -.015em;
-}
-#success_stories .text-card .testi-text {
-    margin: 0;
-    color: #D1D5DB;
-    font-size: .96rem;
-    font-weight: 400;
-    line-height: 1.75;
-    letter-spacing: 0;
-    overflow-wrap: anywhere;
-}
-#success_stories .right_column {
-    grid-column: 1 / -1;
-    position: relative;
-    top: auto;
-    width: min(900px, 100%);
-    margin: 18px auto 0;
-}
-#success_stories .video-card {
-    position: relative;
-    width: 100%;
-    height: auto;
-    aspect-ratio: 16 / 9;
-    overflow: hidden;
-    border: 1px solid #2D3748;
-    border-radius: 24px;
-    background: #080F19;
-    box-shadow: 0 22px 60px rgba(0,0,0,.25);
-}
-#success_stories .video-card iframe {
-    position: absolute;
-    inset: 0;
-    display: block;
-    width: 100%;
-    height: 100%;
+#success_stories .testimonial-readmore {
+    display: inline-block;
+    margin: 8px 0 2px;
+    padding: 0;
     border: 0;
+    background: transparent;
+    color: #F58744;
+    font: 700 13px/1.4 'Space Grotesk', sans-serif;
+    cursor: pointer;
+    text-decoration: none;
+    transition: color .2s ease;
 }
-@media (max-width: 1000px) {
-    #success_stories .text_cards_stack {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-    #success_stories .text-card:last-child {
-        grid-column: 1 / -1;
-    }
-}
-@media (max-width: 680px) {
-    #success_stories.testimonial_section { padding: 0; }
-    #success_stories .testimonial_layout {
-        width: min(100% - 32px, 520px);
-        padding: 58px 0;
-        gap: 24px;
-    }
-    #success_stories .intro_block {
-        align-items: flex-start;
-        flex-direction: column;
-        gap: 20px;
-        padding-bottom: 22px;
-    }
-    #success_stories .testimonial-title {
-        font-size: clamp(2.1rem, 10vw, 3.1rem);
-        line-height: 1.1;
-    }
-    #success_stories .text_cards_stack {
-        grid-template-columns: minmax(0, 1fr);
-        gap: 14px;
-    }
-    #success_stories .text-card,
-    #success_stories .text-card:last-child {
-        grid-column: auto;
-        padding: 24px 22px;
-        border-radius: 18px;
-    }
-    #success_stories .text-card .testi-text {
-        font-size: .95rem;
-    }
-    #success_stories .right_column {
-        margin-top: 4px;
-    }
-    #success_stories .video-card {
-        border-radius: 18px;
-    }
-}
-@media (prefers-reduced-motion: reduce) {
-    #success_stories .text-card,
-    #success_stories .testimonial-button {
-        transition: none !important;
-    }
-    #success_stories .text-card:hover,
-    #success_stories .testimonial-button:hover {
-        transform: none !important;
-    }
-}
+#success_stories .testimonial-readmore:hover,
+#success_stories .testimonial-readmore:focus-visible { color: #c96b2e; text-decoration: underline; }
+#success_stories .testimonial-readmore:focus-visible { outline: 2px solid #F58744; outline-offset: 3px; }
 </style>
 
 </head>
@@ -2154,6 +1916,38 @@ class="home wp-singular page-template-default page page-id-23 wp-embed-responsiv
         }
 
         window.setInterval(showNextGreeting, 440);
+    })();
+    </script>
+    <script id="johnmel-testimonial-readmore">
+    (function () {
+        function setupTestimonials() {
+            var section = document.getElementById('success_stories');
+            if (!section) return;
+            section.querySelectorAll('.testi-text').forEach(function (paragraph) {
+                paragraph.classList.add('is-collapsed');
+                var button = document.createElement('button');
+                button.type = 'button';
+                button.className = 'testimonial-readmore';
+                button.textContent = 'Read more';
+                button.setAttribute('aria-expanded', 'false');
+                button.addEventListener('click', function () {
+                    var expanded = button.getAttribute('aria-expanded') === 'true';
+                    button.setAttribute('aria-expanded', String(!expanded));
+                    paragraph.classList.toggle('is-collapsed', expanded);
+                    button.textContent = expanded ? 'Read more' : 'Read less';
+                });
+                paragraph.insertAdjacentElement('afterend', button);
+                // Hide the control when the text already fits in the collapsed preview.
+                requestAnimationFrame(function () {
+                    if (paragraph.scrollHeight <= paragraph.clientHeight + 2) button.hidden = true;
+                });
+            });
+        }
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', setupTestimonials, { once: true });
+        } else {
+            setupTestimonials();
+        }
     })();
     </script>
     
@@ -2473,6 +2267,7 @@ class="home wp-singular page-template-default page page-id-23 wp-embed-responsiv
                     </div>
                     <div>
                        <h3 class="testi-name">Derek Morrow</h3>
+                        <span class="testi-role">CEO of BizChamp</span>
                         <p class="testi-text">
                            Johnmel is a true high-level specialist who knows his craft inside and out. He’s reliable, detail-oriented, and always delivers quality work. You can count on him to get things done right.
                         </p>
@@ -2485,6 +2280,7 @@ class="home wp-singular page-template-default page page-id-23 wp-embed-responsiv
                     </div>
                     <div>
                        <h3 class="testi-name">Cameron Oates</h3>
+                        <span class="testi-role">Neurotherapist</span>
                         <p class="testi-text">
                             Johnmel is a very talented. He is very professional and he wouldn’t stop until he’s very satisfied with the outcome. I recommend him for anyone looking for GoHighLevel Expert and Digital Marketing.
                         </p>
@@ -2497,6 +2293,7 @@ class="home wp-singular page-template-default page page-id-23 wp-embed-responsiv
                     </div>
                     <div>
                        <h3 class="testi-name">Paul Paza</h3>
+                        <span class="testi-role">CEO of ReTriber</span>
                         <p class="testi-text">
                             Johnmel worked for us as our GoHighLevel website and funnel builder. We had a restructuring and had to let him go, though it was not due in any way to the quality of his work. 
 							
