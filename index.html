@@ -1877,10 +1877,196 @@ button,
     transition: color .2s ease;
 }
 #success_stories .testimonial-readmore:hover,
-#success_stories .testimonial-readmore:focus-visible { color: #c96b2e; text-decoration: underline; }
-#success_stories .testimonial-readmore:focus-visible { outline: 2px solid #F58744; outline-offset: 3px; }
+#success_stories .testimonial-readmore:focus-visible { color: #8FD3C8; text-decoration: underline; }
+#success_stories .testimonial-readmore:focus-visible { outline: 2px solid #8FD3C8; outline-offset: 3px; }
+
+
+/* FINAL TESTIMONIAL LAYOUT: keep heading and CTA in place; video first, cards below. */
+#success_stories .johnmel-testimonial-layout {
+    display: block !important;
+    width: 100%;
+}
+#success_stories .johnmel-testimonial-intro {
+    display: block;
+    width: 100%;
+    margin-bottom: 28px;
+}
+#success_stories .johnmel-testimonial-intro .testimonial-title {
+    text-align: left !important;
+}
+#success_stories .johnmel-testimonial-video {
+    display: block;
+    position: relative;
+    width: min(100%, 980px);
+    aspect-ratio: 16 / 9;
+    height: auto;
+    margin: 0 auto 34px;
+    padding: 0;
+    overflow: hidden;
+    border: 1px solid rgba(245, 135, 68, .72);
+    border-radius: 14px;
+    background: #0B0F19;
+    box-shadow: 0 0 0 1px rgba(255, 210, 51, .08), 0 16px 44px rgba(0, 0, 0, .30);
+}
+#success_stories .johnmel-testimonial-video iframe {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+#success_stories .johnmel-testimonial-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: stretch;
+    gap: 24px;
+    width: 100%;
+}
+#success_stories .johnmel-testimonial-card {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 18px;
+    min-width: 0;
+    height: 100%;
+    padding: 25px 24px;
+    border: 1px solid rgba(245, 135, 68, .62);
+    border-radius: 12px;
+    background: linear-gradient(145deg, rgba(24, 28, 42, .96), rgba(11, 15, 25, .98));
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .035);
+    transition: border-color .22s ease, transform .22s ease, box-shadow .22s ease;
+}
+#success_stories .johnmel-testimonial-card:hover {
+    border-color: rgba(143, 211, 200, .88);
+    transform: translateY(-3px);
+    box-shadow: 0 14px 34px rgba(0, 0, 0, .28), 0 0 0 1px rgba(143, 211, 200, .10);
+}
+#success_stories .johnmel-testimonial-card .testi-header {
+    margin: 0;
+    flex: 0 0 auto;
+}
+#success_stories .johnmel-testimonial-copy {
+    min-width: 0;
+}
+#success_stories .johnmel-testimonial-card .testi-name {
+    color: #FFD233;
+    margin-bottom: 3px;
+}
+#success_stories .johnmel-testimonial-card .testi-role {
+    color: rgba(255, 255, 255, .68);
+    font-size: 13px;
+    margin: 0 0 12px;
+}
+#success_stories .johnmel-testimonial-card .testi-text {
+    color: rgba(255, 255, 255, .90);
+    line-height: 1.7;
+    overflow-wrap: anywhere;
+}
+#success_stories .johnmel-testimonial-card .testi-text.is-collapsed {
+    -webkit-line-clamp: 4;
+    line-clamp: 4;
+}
+#success_stories .johnmel-testimonial-card .testimonial-readmore {
+    color: #F58744;
+    font-size: 13px;
+    font-weight: 700;
+}
+#success_stories .johnmel-testimonial-card .testi-avatar {
+    width: 64px;
+    height: 64px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 210, 51, .72);
+}
+@media (max-width: 900px) {
+    #success_stories .johnmel-testimonial-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+}
+@media (max-width: 600px) {
+    #success_stories .johnmel-testimonial-intro { margin-bottom: 22px; }
+    #success_stories .johnmel-testimonial-video { margin-bottom: 24px; border-radius: 10px; }
+    #success_stories .johnmel-testimonial-grid { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+    #success_stories .johnmel-testimonial-card { padding: 21px 19px; }
+}
 </style>
 
+/* Final refinement: testimonial portraits have no visible border or outline. */
+<style>
+#success_stories .johnmel-testimonial-card .testi-avatar,
+#success_stories .johnmel-testimonial-card .testi-header img,
+#success_stories .johnmel-testimonial-card img {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* Centered testimonial lightbox opened by Read more. */
+.johnmel-testimonial-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 999999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(16px, 4vw, 44px);
+    background: rgba(3, 5, 10, .78);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .22s ease, visibility .22s ease;
+}
+.johnmel-testimonial-modal.is-open { opacity: 1; visibility: visible; }
+.johnmel-testimonial-modal-dialog {
+    position: relative;
+    box-sizing: border-box;
+    width: min(100%, 850px);
+    max-height: min(82vh, 760px);
+    overflow-y: auto;
+    padding: clamp(24px, 4vw, 42px);
+    border: 1px solid rgba(143, 211, 200, .68);
+    border-radius: 18px;
+    background: linear-gradient(145deg, #141a24, #080b12 72%);
+    box-shadow: 0 28px 90px rgba(0,0,0,.58), inset 0 1px 0 rgba(255,255,255,.05);
+    transform: translateY(14px) scale(.985);
+    transition: transform .22s ease;
+}
+.johnmel-testimonial-modal.is-open .johnmel-testimonial-modal-dialog { transform: translateY(0) scale(1); }
+.johnmel-testimonial-modal-close {
+    position: sticky;
+    top: 0;
+    float: right;
+    z-index: 2;
+    display: inline-grid;
+    place-items: center;
+    width: 38px;
+    height: 38px;
+    margin: -10px -10px 4px 16px;
+    border: 1px solid rgba(255,255,255,.15);
+    border-radius: 50%;
+    background: rgba(255,255,255,.06);
+    color: #e8f0f3;
+    font: 400 25px/1 sans-serif;
+    cursor: pointer;
+    transition: background .2s ease, border-color .2s ease, color .2s ease;
+}
+.johnmel-testimonial-modal-close:hover { background: rgba(143,211,200,.13); border-color: #8FD3C8; color: #8FD3C8; }
+.johnmel-testimonial-modal-stars { color: #F5B86A; letter-spacing: .16em; font-size: 24px; margin: 0 0 24px; }
+.johnmel-testimonial-modal-text { clear: both; color: rgba(255,255,255,.94); font: italic 400 clamp(18px, 2.2vw, 28px)/1.65 'Space Grotesk', sans-serif; overflow-wrap: anywhere; margin: 0 0 30px; }
+.johnmel-testimonial-modal-person { display: flex; align-items: center; gap: 18px; }
+.johnmel-testimonial-modal-person img { width: 72px; height: 72px; flex: 0 0 72px; object-fit: cover; border: 0 !important; outline: 0 !important; box-shadow: none !important; border-radius: 50%; }
+.johnmel-testimonial-modal-name { color: #f4f6f8; font: 700 18px/1.4 'Space Grotesk', sans-serif; }
+.johnmel-testimonial-modal-role { color: #aebbc5; font-size: 14px; line-height: 1.5; margin-top: 4px; }
+body.johnmel-testimonial-modal-open { overflow: hidden; }
+@media (max-width: 600px) {
+    .johnmel-testimonial-modal { padding: 12px; }
+    .johnmel-testimonial-modal-dialog { max-height: 88vh; padding: 24px 20px; border-radius: 14px; }
+    .johnmel-testimonial-modal-stars { font-size: 20px; margin-bottom: 18px; }
+    .johnmel-testimonial-modal-person img { width: 56px; height: 56px; flex-basis: 56px; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .johnmel-testimonial-modal, .johnmel-testimonial-modal-dialog, .johnmel-testimonial-modal-close { transition: none !important; }
+}
+</style>
 </head>
 <body 
 class="home wp-singular page-template-default page page-id-23 wp-embed-responsive wp-theme-twentytwentyfive wp-child-theme-twentytwentyfive-child">
@@ -1923,21 +2109,64 @@ class="home wp-singular page-template-default page page-id-23 wp-embed-responsiv
         function setupTestimonials() {
             var section = document.getElementById('success_stories');
             if (!section) return;
+
+            var modal = document.createElement('div');
+            modal.className = 'johnmel-testimonial-modal';
+            modal.setAttribute('aria-hidden', 'true');
+            modal.innerHTML = '<div class="johnmel-testimonial-modal-dialog" role="dialog" aria-modal="true" aria-label="Full testimonial"><button type="button" class="johnmel-testimonial-modal-close" aria-label="Close testimonial">×</button><div class="johnmel-testimonial-modal-stars" aria-label="5 out of 5 stars">★★★★★</div><p class="johnmel-testimonial-modal-text"></p><div class="johnmel-testimonial-modal-person"><img alt="" /><div><div class="johnmel-testimonial-modal-name"></div><div class="johnmel-testimonial-modal-role"></div></div></div></div>';
+            document.body.appendChild(modal);
+            var dialog = modal.querySelector('.johnmel-testimonial-modal-dialog');
+            var closeButton = modal.querySelector('.johnmel-testimonial-modal-close');
+            var modalText = modal.querySelector('.johnmel-testimonial-modal-text');
+            var modalImage = modal.querySelector('.johnmel-testimonial-modal-person img');
+            var modalName = modal.querySelector('.johnmel-testimonial-modal-name');
+            var modalRole = modal.querySelector('.johnmel-testimonial-modal-role');
+            var lastTrigger = null;
+
+            function closeModal() {
+                modal.classList.remove('is-open');
+                modal.setAttribute('aria-hidden', 'true');
+                document.body.classList.remove('johnmel-testimonial-modal-open');
+                if (lastTrigger) lastTrigger.focus();
+            }
+            closeButton.addEventListener('click', closeModal);
+            modal.addEventListener('click', function (event) {
+                if (event.target === modal) closeModal();
+            });
+            document.addEventListener('keydown', function (event) {
+                if (event.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
+            });
+
             section.querySelectorAll('.testi-text').forEach(function (paragraph) {
                 paragraph.classList.add('is-collapsed');
                 var button = document.createElement('button');
                 button.type = 'button';
                 button.className = 'testimonial-readmore';
                 button.textContent = 'Read more';
-                button.setAttribute('aria-expanded', 'false');
+                button.setAttribute('aria-haspopup', 'dialog');
                 button.addEventListener('click', function () {
-                    var expanded = button.getAttribute('aria-expanded') === 'true';
-                    button.setAttribute('aria-expanded', String(!expanded));
-                    paragraph.classList.toggle('is-collapsed', expanded);
-                    button.textContent = expanded ? 'Read more' : 'Read less';
+                    var card = paragraph.closest('.johnmel-testimonial-card') || paragraph.closest('.testi-item') || paragraph.parentElement;
+                    var name = card && card.querySelector('.testi-name');
+                    var role = card && card.querySelector('.testi-role');
+                    var avatar = card && card.querySelector('.testi-avatar, .testi-header img, img');
+                    modalText.textContent = paragraph.textContent.trim();
+                    modalName.textContent = name ? name.textContent.trim() : '';
+                    modalRole.textContent = role ? role.textContent.trim() : '';
+                    if (avatar && avatar.src) {
+                        modalImage.src = avatar.src;
+                        modalImage.alt = name ? name.textContent.trim() : 'Testimonial author';
+                        modalImage.style.display = '';
+                    } else {
+                        modalImage.removeAttribute('src');
+                        modalImage.style.display = 'none';
+                    }
+                    lastTrigger = button;
+                    modal.classList.add('is-open');
+                    modal.setAttribute('aria-hidden', 'false');
+                    document.body.classList.add('johnmel-testimonial-modal-open');
+                    closeButton.focus();
                 });
                 paragraph.insertAdjacentElement('afterend', button);
-                // Hide the control when the text already fits in the collapsed preview.
                 requestAnimationFrame(function () {
                     if (paragraph.scrollHeight <= paragraph.clientHeight + 2) button.hidden = true;
                 });
@@ -2248,80 +2477,64 @@ class="home wp-singular page-template-default page page-id-23 wp-embed-responsiv
     </div>
 </section>
 <section class="testimonial_section" id="success_stories">
-    <div class="testimonial_layout">
-        
-        <div class="left_column">
-            
-            <div class="intro_block">
-                <h2 class="testimonial-title" style="text-align: left; margin-bottom: 20px;">
-                    Hear some Professional that I've work with..
-                </h2>
-                <a href="#contact" class="testimonial-button">Hire Me</a>
-            </div>
-
-            <div class="text_cards_stack">
-                
-                <div class="testi-item text-card">
-                    <div class="testi-header">
-                        <img src="https://raw.githubusercontent.com/johnmelindanan01-spec/myportfolio/refs/heads/main/derek.jpeg" alt="Emanuel Garcia" class="testi-avatar" loading="lazy" decoding="async">
-                    </div>
-                    <div>
-                       <h3 class="testi-name">Derek Morrow</h3>
-                        <span class="testi-role">CEO of BizChamp</span>
-                        <p class="testi-text">
-                           Johnmel is a true high-level specialist who knows his craft inside and out. He’s reliable, detail-oriented, and always delivers quality work. You can count on him to get things done right.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="testi-item text-card">
-                    <div class="testi-header">
-                        <img src="https://assets.cdn.filesafe.space/yTqyzmYR12TI1tQVjQtD/media/6a8d660ce25296bd1b82305c.png" alt="Nats Mago" class="testi-avatar" loading="lazy" decoding="async">
-                    </div>
-                    <div>
-                       <h3 class="testi-name">Cameron Oates</h3>
-                        <span class="testi-role">Neurotherapist</span>
-                        <p class="testi-text">
-                            Johnmel is a very talented. He is very professional and he wouldn’t stop until he’s very satisfied with the outcome. I recommend him for anyone looking for GoHighLevel Expert and Digital Marketing.
-                        </p>
-                    </div>
-                </div>
-
-				 <div class="testi-item text-card">
-                    <div class="testi-header">
-                        <img src="https://raw.githubusercontent.com/johnmelindanan01-spec/portfolio/refs/heads/main/2026-10-15%2000.38.03.jpg" alt="Nats Mago" class="testi-avatar" loading="lazy" decoding="async">
-                    </div>
-                    <div>
-                       <h3 class="testi-name">Paul Paza</h3>
-                        <span class="testi-role">CEO of ReTriber</span>
-                        <p class="testi-text">
-                            Johnmel worked for us as our GoHighLevel website and funnel builder. We had a restructuring and had to let him go, though it was not due in any way to the quality of his work. 
-							
-During his time with us, Johnmel was punctual, extremely efficient in his task, clear in his communication, and completed all of his tasks to the satisfaction of our team's strict requirements. 
-
-I would not hesitate to hire him again when the need arises. I can be contacted by any employer who would like to know more about Johnmel's work with us. 
-                        </p>
-                    </div>
-                </div>
-
-            </div>
-            
+    <div class="testimonial_layout johnmel-testimonial-layout">
+        <div class="intro_block johnmel-testimonial-intro">
+            <h2 class="testimonial-title" style="text-align: left; margin-bottom: 20px;">
+                Hear some Professional that I've work with..
+            </h2>
+            <a href="#contact" class="testimonial-button">Hire Me</a>
         </div>
-        
-        <div class="right_column">
-            <div class="testi-item video-card">
-                <iframe 
-                    width="100%" 
-                    height="100%" 
-                    src="https://www.youtube.com/embed/rEQVFtDqnGE" 
-                    title="Derek Testimonial" 
-                    frameborder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                    allowfullscreen>
-                </iframe>
+
+        <div class="testi-item video-card johnmel-testimonial-video">
+            <iframe
+                width="100%"
+                height="100%"
+                src="https://www.youtube.com/embed/rEQVFtDqnGE"
+                title="Derek Testimonial"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen>
+            </iframe>
+        </div>
+
+        <div class="text_cards_stack johnmel-testimonial-grid">
+            <div class="testi-item text-card johnmel-testimonial-card">
+                <div class="testi-header">
+                    <img src="https://raw.githubusercontent.com/johnmelindanan01-spec/myportfolio/refs/heads/main/derek.jpeg" alt="Derek Morrow" class="testi-avatar" loading="lazy" decoding="async">
+                </div>
+                <div class="johnmel-testimonial-copy">
+                    <h3 class="testi-name">Derek Morrow</h3>
+                    <span class="testi-role">CEO of BizChamp</span>
+                    <p class="testi-text">Johnmel is a true high-level specialist who knows his craft inside and out. He’s reliable, detail-oriented, and always delivers quality work. You can count on him to get things done right.</p>
+                </div>
+            </div>
+
+            <div class="testi-item text-card johnmel-testimonial-card">
+                <div class="testi-header">
+                    <img src="https://assets.cdn.filesafe.space/yTqyzmYR12TI1tQVjQtD/media/6a8d660ce25296bd1b82305c.png" alt="Cameron Oates" class="testi-avatar" loading="lazy" decoding="async">
+                </div>
+                <div class="johnmel-testimonial-copy">
+                    <h3 class="testi-name">Cameron Oates</h3>
+                    <span class="testi-role">Neurotherapist</span>
+                    <p class="testi-text">Johnmel is a very talented. He is very professional and he wouldn’t stop until he’s very satisfied with the outcome. I recommend him for anyone looking for GoHighLevel Expert and Digital Marketing.</p>
+                </div>
+            </div>
+
+            <div class="testi-item text-card johnmel-testimonial-card">
+                <div class="testi-header">
+                    <img src="https://raw.githubusercontent.com/johnmelindanan01-spec/portfolio/refs/heads/main/2026-10-15%2000.38.03.jpg" alt="Paul Paza" class="testi-avatar" loading="lazy" decoding="async">
+                </div>
+                <div class="johnmel-testimonial-copy">
+                    <h3 class="testi-name">Paul Paza</h3>
+                    <span class="testi-role">CEO of ReTriber</span>
+                    <p class="testi-text">Johnmel worked for us as our GoHighLevel website and funnel builder. We had a restructuring and had to let him go, though it was not due in any way to the quality of his work.
+
+During his time with us, Johnmel was punctual, extremely efficient in his task, clear in his communication, and completed all of his tasks to the satisfaction of our team's strict requirements.
+
+I would not hesitate to hire him again when the need arises. I can be contacted by any employer who would like to know more about Johnmel's work with us.</p>
+                </div>
             </div>
         </div>
-        
     </div>
 </section>
 <section class="live_portfolio_section" id="contact">
