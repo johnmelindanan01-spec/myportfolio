@@ -2065,6 +2065,49 @@ body.johnmel-testimonial-modal-open { overflow: hidden; }
     .johnmel-testimonial-modal, .johnmel-testimonial-modal-dialog, .johnmel-testimonial-modal-close { transition: none !important; }
 }
 </style>
+
+<style id="johnmel-responsive-overflow-fix">
+/* Responsive safety fixes: preserve the existing desktop design while preventing page-wide sideways scrolling. */
+html { width: 100%; max-width: 100%; overflow-x: clip; }
+body { width: 100%; max-width: 100%; overflow-x: clip; }
+*, *::before, *::after { box-sizing: border-box; }
+img, video, iframe, canvas, svg { max-width: 100%; }
+pre, code { max-width: 100%; overflow-wrap: anywhere; }
+
+@media (max-width: 767px) {
+  html, body { overflow-x: clip !important; }
+  body { min-width: 0 !important; }
+  #page, #wrapper, main, #content, .site, .site-content,
+  .container, .container-fluid, .footer_bar_layout {
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+  section, header, footer, nav, .row, [class*="container"] {
+    min-width: 0;
+  }
+  .footer_bar_layout {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 14px 20px;
+  }
+  .footer_copyright, .footer_links {
+    min-width: 0 !important;
+    max-width: 100% !important;
+    overflow-wrap: anywhere;
+  }
+  .footer_links {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 12px 18px;
+  }
+  .footer_links a { max-width: 100%; overflow-wrap: anywhere; }
+  /* Prevent fixed-width hero/project visuals from expanding the viewport. */
+  .swiper, .swiper-wrapper, .swiper-slide { max-width: 100%; }
+  .swiper-slide { min-width: 0; }
+  iframe { width: 100%; }
+}
+</style>
+
 </head>
 <body 
 class="home wp-singular page-template-default page page-id-23 wp-embed-responsive wp-theme-twentytwentyfive wp-child-theme-twentytwentyfive-child">
@@ -2241,7 +2284,7 @@ class="home wp-singular page-template-default page page-id-23 wp-embed-responsiv
     </div>
     
     <p class="hero-pretitle">
-                * Hi I'm Johnmel Indanan
+                Hi I'm Johnmel Indanan
     </p>
 
     <h1 class="hero-title">
@@ -2351,7 +2394,7 @@ class="home wp-singular page-template-default page page-id-23 wp-embed-responsiv
     <div class="work-grid">
         
         <div class="work-content-left">
-            <p class="work-pretitle">* WORK EXPERIENCE</p>
+            <p class="work-pretitle">WORK EXPERIENCE</p>
             <h2 class="work-title">
                 Building smarter systems, automating workflows, and helping businesses grow.
             </h2>
@@ -2427,7 +2470,7 @@ class="home wp-singular page-template-default page page-id-23 wp-embed-responsiv
     <div class="project_container">
         
         <div class="project_content">
-            <p class="project-pretitle">* SELECTED WORK</p>
+            <p class="project-pretitle">SELECTED WORK</p>
             <h2 class="project-title">A Glimpse of My Projects</h2>
         </div>
         
@@ -2539,7 +2582,7 @@ I would not hesitate to hire him again when the need arises. I can be contacted 
     <div class="live_layout">
         
         <div class="live_intro">
-            <p class="contact-pretitle">* More Works →</p>
+            <p class="contact-pretitle">More Works →</p>
             <h2 class="contact-title">
                 Have a Systems That Needs to<br> 
                 <span style="color: #F58744;">Work Better?</span>
@@ -2754,7 +2797,6 @@ if (menuToggle && mainNav) {
 }
 </script>
 
-,
 <script>
 document.addEventListener('DOMContentLoaded', function () {
     var swiper = new Swiper(".myLiveProjectSwiper", {
